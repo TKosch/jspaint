@@ -1262,29 +1262,29 @@ set_magnification(default_magnification);
 
 // this is synchronous for now, but @TODO: handle possibility of loading a document before callback
 // when switching to asynchronous storage, e.g. with localforage
-storage.get({
-	width: default_canvas_width,
-	height: default_canvas_height,
-}, (err, stored_values) => {
-	if (err) { return; }
-	my_canvas_width = stored_values.width;
-	my_canvas_height = stored_values.height;
+// storage.get({
+// 	width: default_canvas_width,
+// 	height: default_canvas_height,
+// }, (err, stored_values) => {
+// 	if (err) { return; }
+// 	my_canvas_width = stored_values.width;
+// 	my_canvas_height = stored_values.height;
 
-	make_or_update_undoable({
-		match: (history_node) => history_node.name === localize("New"),
-		name: "Resize Canvas For New Document",
-		icon: get_help_folder_icon("p_stretch_both.png"),
-	}, () => {
-		main_canvas.width = Math.max(1, my_canvas_width);
-		main_canvas.height = Math.max(1, my_canvas_height);
-		main_ctx.disable_image_smoothing();
-		if (!transparency) {
-			main_ctx.fillStyle = selected_colors.background;
-			main_ctx.fillRect(0, 0, main_canvas.width, main_canvas.height);
-		}
-		$canvas_area.trigger("resize");
-	});
-});
+// 	make_or_update_undoable({
+// 		match: (history_node) => history_node.name === localize("New"),
+// 		name: "Resize Canvas For New Document",
+// 		icon: get_help_folder_icon("p_stretch_both.png"),
+// 	}, () => {
+// 		main_canvas.width = Math.max(1, my_canvas_width);
+// 		main_canvas.height = Math.max(1, my_canvas_height);
+// 		main_ctx.disable_image_smoothing();
+// 		if (!transparency) {
+// 			main_ctx.fillStyle = selected_colors.background;
+// 			main_ctx.fillRect(0, 0, main_canvas.width, main_canvas.height);
+// 		}
+// 		$canvas_area.trigger("resize");
+// 	});
+// });
 
 if (window.initial_system_file_handle) {
 	systemHooks.readBlobFromHandle(window.initial_system_file_handle).then(file => {
