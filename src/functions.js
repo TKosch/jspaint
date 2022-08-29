@@ -1017,34 +1017,74 @@ async function confirm_overwrite_capability() {
 }
 
 
-function file_save(maybe_saved_callback = () => { }, update_from_saved = true) {
+function file_save(maybe_saved_callback = () => { }, update_from_saved = false) {
 	deselect();
 	// store and use file handle at this point in time, to avoid race conditions
 	const save_file_handle = system_file_handle;
-	if (!save_file_handle || file_name.match(/\.(svg|pdf)$/i)) {
-		return file_save_as(maybe_saved_callback, update_from_saved);
-	}
-	write_image_file(main_canvas, file_format, async (blob) => {
-		await systemHooks.writeBlobToHandle(save_file_handle, blob);
+	// if (!save_file_handle || file_name.match(/\.(svg|pdf)$/i)) {
+	// 	return file_save_as(maybe_saved_callback, update_from_saved);
+	// }
 
-		if (update_from_saved) {
-			update_from_saved_file(blob);
-		}
-		maybe_saved_callback();
-	});
+	// write_image_file(main_canvas, "image/png", async (blob) => {
+	// 	await systemHooks.writeBlobToHandle(save_file_handle, blob);
+	// 	if (update_from_saved) {
+	// 		update_from_saved_file(blob);
+	// 	}
+	// 	maybe_saved_callback();
+	// });
+
+	// var id = "REPLACE WITH ID";
+	// main_canvas.toBlob(function (blob) {
+	// 	saveAs(blob, id + ".png");
+	// });
+
+	save_canvas(main_canvas);
+
+	maybe_saved_callback();
 }
+
+function save_canvas(c) {
+
+	// const queryString = window.location.search;
+	// const urlParams = new URLSearchParams(queryString);
+	// console.log(queryString);
+
+	var data = {};
+	var fileid = "TEST";
+	var b64Image = c.toDataURL("image/png");
+
+	data["fileid"] = fileid;
+	data["b64Image"] = b64Image;
+
+	if (Object.keys(data).length == 2) {
+		$.post("../save_img.php", data, function (result) {
+			console.log("POST Executed!");
+		});
+		data = {};
+	}
+
+	// fetch("../save_img.php", {
+	// 	method: "POST",
+	// 	mode: "no-cors",
+	// 	headers: { "Content-Type": "application/x-www-form-urlencoded" },
+	// 	body: b64Image
+	// }).then(response => response.text())
+	// 	.then(success => console.log(success))
+	// 	.catch(error => console.log(error));
+}
+
 
 function file_save_as(maybe_saved_callback = () => { }, update_from_saved = true) {
 	deselect();
 	systemHooks.showSaveFileDialog({
 		dialogTitle: localize("Save As"),
 		formats: image_formats,
-		defaultFileName: file_name,
+		defaultFileName: "REPLACE FILENAME WITH QUALTRICS ID",
 		defaultPath: typeof system_file_handle === "string" ? system_file_handle : null,
 		defaultFileFormatID: file_format,
 		getBlob: (new_file_type) => {
 			return new Promise((resolve) => {
-				write_image_file(main_canvas, new_file_type, (blob) => {
+				write_image_file(main_canvas, "image/png", (blob) => {
 					resolve(blob);
 				});
 			});
@@ -1052,7 +1092,7 @@ function file_save_as(maybe_saved_callback = () => { }, update_from_saved = true
 		savedCallbackUnreliable: ({ newFileName, newFileFormatID, newFileHandle, newBlob }) => {
 			saved = true;
 			system_file_handle = newFileHandle;
-			file_name = newFileName;
+			file_name = "REPLACE FILENAME WITH QUALTRICS ID";
 			file_format = newFileFormatID;
 			update_title();
 			maybe_saved_callback();

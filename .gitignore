@@ -16,3 +16,6 @@ node_modules/
 # os crap
 Thumbs.db
 ~*
+
+.DS_Store
+sketches/*
