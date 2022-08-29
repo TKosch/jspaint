@@ -559,18 +559,6 @@
 		[localize("&Image")]: [
 			// @TODO: speech recognition: terms that apply to selection
 			{
-				item: localize("&Flip/Rotate"),
-				shortcut: (window.is_electron_app && !window.electron_is_dev) ? "Ctrl+R" : "Ctrl+Alt+R", // Ctrl+R reloads the browser tab (or Electron window in dev mode via electron-debug)
-				speech_recognition: [
-					"flip",
-					"rotate",
-					"flip/rotate", "flip slash rotate", "flip and rotate", "flip or rotate", "flip rotate",
-					// @TODO: parameters to command
-				],
-				action: () => { image_flip_and_rotate(); },
-				description: localize("Flips or rotates the picture or a selection."),
-			},
-			{
 				item: localize("&Stretch/Skew"),
 				shortcut: window.is_electron_app ? "Ctrl+W" : "Ctrl+Alt+W", // Ctrl+W closes the browser tab
 				speech_recognition: [

@@ -2999,40 +2999,9 @@ function show_convert_to_black_and_white() {
 
 function image_flip_and_rotate() {
 	const $w = new $DialogWindow(localize("Flip and Rotate"));
-	$w.addClass("flip-and-rotate");
+	// $w.addClass("flip-and-rotate");
 
 	const $fieldset = $(E("fieldset")).appendTo($w.$main);
-	$fieldset.append(`
-		<legend>${localize("Flip or rotate")}</legend>
-		<div class="radio-wrapper">
-			<input
-				type="radio"
-				name="flip-or-rotate"
-				id="flip-horizontal"
-				value="flip-horizontal"
-				aria-keyshortcuts="Alt+F"
-				checked
-			/><label for="flip-horizontal">${display_hotkey(localize("&Flip horizontal"))}</label>
-		</div>
-		<div class="radio-wrapper">
-			<input
-				type="radio"
-				name="flip-or-rotate"
-				id="flip-vertical"
-				value="flip-vertical"
-				aria-keyshortcuts="Alt+V"
-			/><label for="flip-vertical">${display_hotkey(localize("Flip &vertical"))}</label>
-		</div>
-		<div class="radio-wrapper">
-			<input
-				type="radio"
-				name="flip-or-rotate"
-				id="rotate-by-angle"
-				value="rotate-by-angle"
-				aria-keyshortcuts="Alt+R"
-			/><label for="rotate-by-angle">${display_hotkey(localize("&Rotate by angle"))}</label>
-		</div>
-	`);
 
 	const $rotate_by_angle = $(E("div")).appendTo($fieldset);
 	$rotate_by_angle.addClass("sub-options");
