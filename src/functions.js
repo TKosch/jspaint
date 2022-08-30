@@ -1059,10 +1059,10 @@ function save_canvas(c, ResponseID) {
 	// 	.catch(error => console.log(error));
 }
 
-window.addEventListener('beforeunload', function (e) {
-	e.preventDefault();
-	file_save();
-});
+// window.addEventListener('beforeunload', function (e) {
+// 	e.preventDefault();
+// 	file_save();
+// });
 
 function file_save_as(maybe_saved_callback = () => { }, update_from_saved = true) {
 	deselect();
