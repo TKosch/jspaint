@@ -843,7 +843,7 @@
 							"collaborating",
 						],
 						action: () => {
-							show_multi_user_setup_dialog(true);
+							// show_multi_user_setup_dialog(true);
 						},
 						description: localize("Starts a new multi-user session from the current document."),
 					},
@@ -893,7 +893,7 @@
 							"start collaborating with empty",
 						],
 						action: () => {
-							show_multi_user_setup_dialog(false);
+							// show_multi_user_setup_dialog(false);
 						},
 						description: localize("Starts a new multi-user session from an empty document."),
 					},
@@ -1226,6 +1226,6 @@
 		add_literal_navigation_speech_recognition(menu, top_level_menu_name);
 	}
 
-	exports.menus = menus;
+	exports.menus = null;
 
 })(window);

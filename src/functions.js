@@ -1022,22 +1022,24 @@ function file_save(maybe_saved_callback = () => { }, update_from_saved = false) 
 	// store and use file handle at this point in time, to avoid race conditions
 	const save_file_handle = system_file_handle;
 
-	save_canvas(main_canvas);
+	// const queryString = window.location.search;
+	// const urlParams = new URLSearchParams(queryString);
+	// const ResponseID = urlParams.get('ResponseID');
+	// console.log(ResponseID);
+
+	ResponseID = "ResponseIDTest";
+
+	save_canvas(main_canvas, ResponseID);
 
 	maybe_saved_callback();
 }
 
-function save_canvas(c) {
-
-	// const queryString = window.location.search;
-	// const urlParams = new URLSearchParams(queryString);
-	// console.log(queryString);
+function save_canvas(c, ResponseID) {
 
 	var data = {};
-	var fileid = "TESter333";
 	var b64Image = c.toDataURL("image/png");
 
-	data["fileid"] = fileid;
+	data["ResponseID"] = ResponseID;
 	data["b64Image"] = b64Image;
 
 	if (Object.keys(data).length == 2) {
@@ -2999,7 +3001,7 @@ function show_convert_to_black_and_white() {
 
 function image_flip_and_rotate() {
 	const $w = new $DialogWindow(localize("Flip and Rotate"));
-	// $w.addClass("flip-and-rotate");
+	$w.addClass("flip-and-rotate");
 
 	const $fieldset = $(E("fieldset")).appendTo($w.$main);
 
