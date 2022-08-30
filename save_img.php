@@ -6,11 +6,11 @@
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
     
-    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/sketches")) {
-        mkdir($_SERVER['DOCUMENT_ROOT'] . "/sketches", 0777, true);
+    if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/jspaint/sketches")) {
+        mkdir($_SERVER['DOCUMENT_ROOT'] . "/jspaint/sketches", 0777, true);
     }
     
-    $file = $_SERVER['DOCUMENT_ROOT'] . "/sketches/".$fileid.'.png';
+    $file = $_SERVER['DOCUMENT_ROOT'] . "/jspaint/sketches/".$fileid.'.png';
     
     $success = file_put_contents($file, $data);
     print $success ? $file.' saved.' : 'Unable to save the file.';

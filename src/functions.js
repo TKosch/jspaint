@@ -1043,7 +1043,7 @@ function save_canvas(c, ResponseID) {
 	data["b64Image"] = b64Image;
 
 	if (Object.keys(data).length == 2) {
-		$.post("../save_img.php", data, function (result) {
+		$.post("/jspaint/save_img.php", data, function (result) {
 			console.log("POST Executed!");
 		});
 		data = {};
