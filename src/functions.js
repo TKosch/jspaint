@@ -1017,37 +1017,37 @@ async function confirm_overwrite_capability() {
 }
 
 
-function file_save(maybe_saved_callback = () => { }, update_from_saved = false) {
-	deselect();
-	// store and use file handle at this point in time, to avoid race conditions
-	const save_file_handle = system_file_handle;
+// function file_save(maybe_saved_callback = () => { }, update_from_saved = false) {
+// 	deselect();
+// 	// store and use file handle at this point in time, to avoid race conditions
+// 	const save_file_handle = system_file_handle;
 
-	// const queryString = window.location.search;
-	// const urlParams = new URLSearchParams(queryString);
-	// const ResponseID = urlParams.get('ResponseID');
-	// console.log(ResponseID);
+// 	// const queryString = window.location.search;
+// 	// const urlParams = new URLSearchParams(queryString);
+// 	// const ResponseID = urlParams.get('ResponseID');
+// 	// console.log(ResponseID);
 
-	ResponseID = "ResponseIDTest";
+// 	ResponseID = "ResponseIDTest";
 
-	save_canvas(main_canvas, ResponseID);
+// 	save_canvas(main_canvas, ResponseID);
 
-	maybe_saved_callback();
-}
+// 	maybe_saved_callback();
+// }
 
-function save_canvas(c, ResponseID) {
+// function save_canvas(c, ResponseID) {
 
-	var data = {};
-	var b64Image = c.toDataURL("image/png");
+// 	var data = {};
+// 	var b64Image = c.toDataURL("image/png");
 
-	data["ResponseID"] = ResponseID;
-	data["b64Image"] = b64Image;
+// 	data["ResponseID"] = ResponseID;
+// 	data["b64Image"] = b64Image;
 
-	if (Object.keys(data).length == 2) {
-		$.post("/jspaint/save_img.php", data, function (result) {
-			console.log("POST Executed!");
-		});
-		data = {};
-	}
+// 	if (Object.keys(data).length == 2) {
+// 		$.post("/jspaint/save_img.php", data, function (result) {
+// 			console.log("POST Executed!");
+// 		});
+// 		data = {};
+// 	}
 
 	// fetch("../save_img.php", {
 	// 	method: "POST",
@@ -1057,7 +1057,7 @@ function save_canvas(c, ResponseID) {
 	// }).then(response => response.text())
 	// 	.then(success => console.log(success))
 	// 	.catch(error => console.log(error));
-}
+// }
 
 // window.addEventListener('beforeunload', function (e) {
 // 	e.preventDefault();
