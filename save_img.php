@@ -1,4 +1,5 @@
 <?php
+    header('Access-Control-Allow-Origin: *'); 
     // $img = file_get_contents("php://input");
     $fileid = isset($_POST['ResponseID'])     ? (string) $_POST['ResponseID']     : 0;
     $img = isset($_POST['b64Image'])     ? (string) $_POST['b64Image']     : 0;
